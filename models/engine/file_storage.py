@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+import sys
+sys.path.append('..')
+
 import json
 from models.user import User
 from models.state import State

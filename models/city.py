@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-from base_model import BaseModel
+from models.base_model import BaseModel
+import sys
+sys.path.append('..')
 
 class City(BaseModel):
     """City class that inherits from BaseModel."""
