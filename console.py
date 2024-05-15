@@ -2,12 +2,17 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    models = ['BaseModel', 'User']
+    models = ['BaseModel', 'User', 'Amenity', 'City', 'Place', 'Review', 'State', 'User']
 
     def do_create(self, line):
         """Usage: create <class>
