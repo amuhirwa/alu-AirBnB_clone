@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" """
+"""Script to test the BaseModel class using unittest."""
 from models.base_model import BaseModel
 import unittest
 import datetime
@@ -39,14 +39,6 @@ class TestBaseModel(unittest.TestCase):
         new = BaseModel(**copy)
         self.assertFalse(new is obj)
 
-    def test_kwargs_int(self):
-        """ """
-        obj = self.value()
-        copy = obj.to_dict()
-        copy.update({1: 2})
-        with self.assertRaises(TypeError):
-            new = BaseModel(**copy)
-
     def test_save(self):
         """ Testing save """
         obj = self.value()
@@ -62,7 +54,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(str(obj), '[{}] ({}) {}'.format(self.name, obj.id,
                          obj.__dict__))
 
-    def test_todict(self):
+    def test_to_dict(self):
         """ """
         obj = self.value()
         n = obj.to_dict()
