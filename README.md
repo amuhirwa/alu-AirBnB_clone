@@ -46,7 +46,7 @@ To start the console, follow these steps:
 
 1. Clone the repository:
 ```
-git clone 
+git clone https://github.com/amuhirwa/alu-AirBnB_clone.git
 ```
 After cloning the repository, you will have a folder called AirBnB_clone. In here, there will be several files that allow the program to work.
 
