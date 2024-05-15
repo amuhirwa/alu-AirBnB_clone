@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+import sys
+sys.path.append('..')
 
 import json
 from models.user import User
@@ -7,6 +9,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
 
 class FileStorage:
     __file_path = 'file.json'
@@ -35,6 +38,5 @@ class FileStorage:
                 retrieved_data = json.load(f)
                 for k, v in retrieved_data.items():
                     self.new(eval(f"{v['__class__']}")(**v))
-        except Exception as e:
-            print(e)
+        except:
             pass
