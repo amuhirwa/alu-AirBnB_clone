@@ -105,12 +105,11 @@ class HBNBCommand(cmd.Cmd):
         obj_key = args[0] + '.' + args[1]
         if obj_key in storage.all():
             instance = storage.all()[obj_key]
-            if args[2] in instance.__dict__:
-                attr_type = type(getattr(instance, args[2]))
-                new_value = attr_type(args[3])
-                instance.__dict__[args[2]] = new_value.replace('\"', '')
-                print(instance)
-                instance.save()
+            attr_type = type(getattr(instance, args[2]))
+            new_value = attr_type(args[3])
+            instance.__dict__[args[2]] = new_value.replace('\"', '')
+            print(instance)
+            instance.save()
         else:
             print('** no instance found **')
             return
