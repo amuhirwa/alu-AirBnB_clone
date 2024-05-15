@@ -5,14 +5,13 @@ from models.user import User
 from models import storage
 
 
-
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     models = ['BaseModel', 'User']
 
     def do_create(self, line):
         """Usage: create <class>
-        Creates a new instance of a class, saves it to json and prints the new objects ID."""
+        Creates a new instance of a class, saves it and prints the ID."""
         if len(line) == 0:
             print('** class name missing **')
             return
@@ -27,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Usage: show <class> <id> or <class>.show(<id>)
-        Prints the string representation of an instance based on the class name and ID."""
+        Prints the string representation of an instance."""
         args = line.split(' ')
         if len(args) == 0:
             print('** class name missing **')
@@ -74,7 +73,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             else:
-                objs = dict(filter(lambda x: args[0] in x[0], storage.all().items()))
+                objs = dict(filter(lambda x: args[0] in x[0],
+                                    storage.all().items()))
                 for obj in objs.values():
                     list_of_objects.append(obj.__str__())
         print(list_of_objects)
@@ -122,4 +122,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-    

@@ -10,16 +10,11 @@ import os
 
 class TestBaseModel(unittest.TestCase):
     """Class which will be used to test BaseModel class. """
-
     def __init__(self, *args, **kwargs):
         """Sets up basic attributes."""
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
-
-    def setUp(self):
-        """ """
-        pass
 
     def tearDown(self):
         try:
@@ -49,7 +44,6 @@ class TestBaseModel(unittest.TestCase):
             self.assertEqual(j[key], obj.to_dict())
 
     def test_str(self):
-        """ """
         obj = self.value()
         self.assertEqual(str(obj), '[{}] ({}) {}'.format(self.name, obj.id,
                          obj.__dict__))
