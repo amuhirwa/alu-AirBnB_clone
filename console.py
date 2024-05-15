@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module to be used as a console to manage all classes."""
 import cmd
 from models.base_model import BaseModel
 from models.user import User
@@ -33,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
         """Usage: show <class> <id> or <class>.show(<id>)
         Prints the string representation of an instance."""
         args = line.split(' ')
-        if len(args) == 0:
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
@@ -51,7 +52,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         args = line.split(' ')
-        if len(args) == 0:
+        print(args)
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
@@ -86,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line):
         args = line.split(' ')
-        if len(args) == 0:
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
