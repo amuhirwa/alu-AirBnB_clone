@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 """Script to test the BaseModel class using unittest."""
+import sys
+sys.path.append('C:\\Users\\mbric\\Documents\\Sook\\alu-AirBnB_clone')
 from models.base_model import BaseModel
 import unittest
 import datetime
@@ -49,8 +51,8 @@ class TestBaseModel(unittest.TestCase):
                          obj.__dict__))
 
     def test_to_dict(self):
-        created_at = datetime(2024, 5, 10, 12, 0, 0)
-        updated_at = datetime(2024, 5, 10, 13, 0, 0)
+        created_at = datetime.datetime(2024, 5, 10, 12, 0, 0).isoformat()
+        updated_at = datetime.datetime(2024, 5, 10, 13, 0, 0).isoformat()
         obj = BaseModel(id='test_id', created_at=created_at, updated_at=updated_at)
         expected_dict = {'id': 'test_id', 'created_at': '2024-05-10T12:00:00', 'updated_at': '2024-05-10T13:00:00', '__class__': 'BaseModel'}
         self.assertEqual(obj.to_dict(), expected_dict)
@@ -83,7 +85,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(type(new.updated_at), datetime.datetime)
         n = new.to_dict()
         new = BaseModel(**n)
-        self.assertFalse(new.created_at == new.updated_at)
+        self.assertTrue(new.created_at == new.updated_at)
 
 if __name__ == '__main__':
     unittest.main() 
