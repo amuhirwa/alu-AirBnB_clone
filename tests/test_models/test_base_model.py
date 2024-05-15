@@ -55,10 +55,11 @@ class TestBaseModel(unittest.TestCase):
                          obj.__dict__))
 
     def test_to_dict(self):
-        """ """
-        obj = self.value()
-        n = obj.to_dict()
-        self.assertEqual(obj.to_dict(), n)
+        created_at = datetime(2024, 5, 10, 12, 0, 0)
+        updated_at = datetime(2024, 5, 10, 13, 0, 0)
+        obj = BaseModel(id='test_id', created_at=created_at, updated_at=updated_at)
+        expected_dict = {'id': 'test_id', 'created_at': '2024-05-10T12:00:00', 'updated_at': '2024-05-10T13:00:00', '__class__': 'BaseModel'}
+        self.assertEqual(obj.to_dict(), expected_dict)
 
     def test_kwargs_none(self):
         """ """
@@ -89,3 +90,6 @@ class TestBaseModel(unittest.TestCase):
         n = new.to_dict()
         new = BaseModel(**n)
         self.assertFalse(new.created_at == new.updated_at)
+
+if __name__ == '__main__':
+    unittest.main() 
