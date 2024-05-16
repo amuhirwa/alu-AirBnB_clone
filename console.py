@@ -1,18 +1,23 @@
 #!/usr/bin/python3
+"""Module to be used as a console to manage all classes."""
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models import storage
-
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
-    models = ['BaseModel', 'User']
+    models = ['BaseModel', 'User', 'Amenity', 'City', 'Place', 'Review', 'State', 'User']
 
     def do_create(self, line):
         """Usage: create <class>
-        Creates a new instance of a class, saves it to json and prints the new objects ID."""
+        Creates a new instance of a class, saves it and prints the ID."""
         if len(line) == 0:
             print('** class name missing **')
             return
@@ -27,9 +32,9 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, line):
         """Usage: show <class> <id> or <class>.show(<id>)
-        Prints the string representation of an instance based on the class name and ID."""
+        Prints the string representation of an instance."""
         args = line.split(' ')
-        if len(args) == 0:
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
@@ -47,7 +52,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         args = line.split(' ')
-        if len(args) == 0:
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
@@ -74,14 +79,15 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
                 return
             else:
-                objs = dict(filter(lambda x: args[0] in x[0], storage.all().items()))
+                objs = dict(filter(lambda x: args[0] in x[0],
+                                    storage.all().items()))
                 for obj in objs.values():
                     list_of_objects.append(obj.__str__())
         print(list_of_objects)
 
     def do_update(self, line):
         args = line.split(' ')
-        if len(args) == 0:
+        if len(args[0]) == 0:
             print('** class name missing **')
             return
         if args[0] not in self.models:
@@ -100,10 +106,12 @@ class HBNBCommand(cmd.Cmd):
         if obj_key in storage.all():
             instance = storage.all()[obj_key]
             if args[2] in instance.__dict__:
-                attr_type = type(getattr(instance, args[2])).__name__
-                new_value = eval(f"{attr_type}(args[3].replace('\"', ''))")
-                setattr(instance, args[2], new_value)
-                instance.save()
+                attr_type = type(getattr(instance, args[2]))
+                new_value = attr_type(args[3])
+                instance.__dict__[args[2]] = new_value.replace('\"', '')
+            else:
+                instance.__dict__[args[2]] = args[3].replace('\"', '')
+            instance.save()
         else:
             print('** no instance found **')
             return
@@ -122,4 +130,3 @@ class HBNBCommand(cmd.Cmd):
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
-    
