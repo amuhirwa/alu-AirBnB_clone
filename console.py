@@ -14,7 +14,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) '
     models = ['BaseModel', 'User', 'Amenity', 'City',
-               'Place', 'Review', 'State', 'User']
+              'Place', 'Review', 'State', 'User']
 
     def do_create(self, line):
         """Usage: create <class>
@@ -128,6 +128,7 @@ class HBNBCommand(cmd.Cmd):
     def do_EOF(self, line):
         "Exit the program with CTRL + D"
         return True
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
