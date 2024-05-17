@@ -1,10 +1,4 @@
 #!/usr/bin/python3
-from models.review import Review
-from models.place import Place
-from models.amenity import Amenity
-from models.city import City
-from models.state import State
-from models.user import User
 import json
 import sys
 sys.path.append('..')
@@ -31,6 +25,12 @@ class FileStorage:
     def reload(self):
         """Loads back objects saved into a JSON file."""
         from models.base_model import BaseModel
+        from models.review import Review
+        from models.place import Place
+        from models.amenity import Amenity
+        from models.city import City
+        from models.state import State
+        from models.user import User
 
         try:
             with open(self.__file_path, 'r') as f:
