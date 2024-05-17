@@ -84,7 +84,7 @@ class test_fileStorage(unittest.TestCase):
         storage.new(rv)
         storage.save()
         storage.reload()
-        objs = storage.__objects
+        objs = storage._FileStorage__objects
         self.assertIn("BaseModel." + bm.id, objs)
         self.assertIn("User." + us.id, objs)
         self.assertIn("State." + st.id, objs)
