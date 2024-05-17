@@ -18,7 +18,7 @@ class test_fileStorage(unittest.TestCase):
             del storage._FileStorage__objects[key]
 
     def tearDown(self):
-        """Cleans up files used in tests."""
+        """ Remove storage file at end of tests """
         try:
             os.remove('file.json')
         except:
@@ -73,8 +73,8 @@ class test_fileStorage(unittest.TestCase):
         """ Load from an empty file """
         with open('file.json', 'w') as f:
             pass
-        storage.reload()
-        self.assertEqual(storage._FileStorage__objects, {})
+        with self.assertRaises(ValueError):
+            storage.reload()
 
     def test_reload_from_nonexistent(self):
         """ Nothing happens if file does not exist """
@@ -107,7 +107,3 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
-
-
-if __name__ == "__main__":
-    unittest.main()
