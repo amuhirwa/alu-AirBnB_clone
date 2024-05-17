@@ -69,12 +69,12 @@ class test_fileStorage(unittest.TestCase):
             loaded = obj
         self.assertEqual(new.to_dict()['id'], loaded.to_dict()['id'])
 
-    def test_reload_empty(self):
+    def test_reload_with_arg(self):
         """ Load from an empty file """
         with open('file.json', 'w') as f:
             pass
-        with self.assertRaises(NameError):
-            stor.reload()
+        with self.assertRaises(TypeError):
+            storage.reload(2)
 
     def test_reload_from_nonexistent(self):
         """ Nothing happens if file does not exist """
