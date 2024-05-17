@@ -2,6 +2,12 @@
 """ Module for testing file storage"""
 import unittest
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
 import os
 
@@ -60,14 +66,32 @@ class test_fileStorage(unittest.TestCase):
         storage.save()
         self.assertTrue(os.path.exists('file.json'))
 
+
     def test_reload(self):
-        """ Storage file is successfully loaded to __objects """
-        new = BaseModel()
+        bm = BaseModel()
+        us = User()
+        st = State()
+        pl = Place()
+        cy = City()
+        am = Amenity()
+        rv = Review()
+        storage.new(bm)
+        storage.new(us)
+        storage.new(st)
+        storage.new(pl)
+        storage.new(cy)
+        storage.new(am)
+        storage.new(rv)
         storage.save()
         storage.reload()
-        for obj in storage.all().values():
-            loaded = obj
-        self.assertEqual(new.to_dict()['id'], loaded.to_dict()['id'])
+        objs = storage.__objects
+        self.assertIn("BaseModel." + bm.id, objs)
+        self.assertIn("User." + us.id, objs)
+        self.assertIn("State." + st.id, objs)
+        self.assertIn("Place." + pl.id, objs)
+        self.assertIn("City." + cy.id, objs)
+        self.assertIn("Amenity." + am.id, objs)
+        self.assertIn("Review." + rv.id, objs)
 
     def test_reload_empty(self):
         """ Load from an empty file """
