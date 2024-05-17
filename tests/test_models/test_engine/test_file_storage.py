@@ -12,7 +12,7 @@ from models.base_model import BaseModel
 import unittest
 
 
-class test_fileStorage(unittest.TestCase):
+class TestFileStorage(unittest.TestCase):
     """ Class to test the file storage method """
 
     def setUp(self):
@@ -24,7 +24,8 @@ class test_fileStorage(unittest.TestCase):
             del storage._FileStorage__objects[key]
 
     def tearDown(self):
-        """ Remove storage file at end of tests """
+        """ Remove storage file at end of tests.
+        Runs after all tests."""
         try:
             os.remove('file.json')
         except:
@@ -91,6 +92,11 @@ class test_fileStorage(unittest.TestCase):
         self.assertIn("City." + cy.id, objs)
         self.assertIn("Amenity." + am.id, objs)
         self.assertIn("Review." + rv.id, objs)
+
+    def test_reload_with_arg(self):
+        with self.assertRaises(TypeError):
+            storage.reload(None)
+
 
     def test_reload_empty(self):
         """ Load from an empty file """
