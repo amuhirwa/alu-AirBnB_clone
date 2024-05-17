@@ -1,18 +1,15 @@
 #!/usr/bin/python3
 """ Module for testing file storage"""
-import unittest
-import sys
-sys.path.append('C:\\Users\\mbric\\Documents\\Sook\\alu-AirBnB_clone')
-from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.place import Place
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
-from models import storage
 import os
-
+from models import storage
+from models.review import Review
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.state import State
+from models.user import User
+from models.base_model import BaseModel
+import unittest
 
 
 class test_fileStorage(unittest.TestCase):
@@ -105,7 +102,8 @@ class test_fileStorage(unittest.TestCase):
         self.assertEqual(storage.reload(), None)
 
     def test_base_model_save(self):
-        """ BaseModel save method calls storage save """
+        """ BaseModel save method calls storage save
+        properly """
         new = BaseModel()
         new.save()
         self.assertTrue(os.path.exists('file.json'))
@@ -131,6 +129,7 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
-    
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -3,6 +3,7 @@ class Node:
         self.data = data
         self.next = None
 
+
 class LinkedList:
 
     def __init__(self):
@@ -30,7 +31,7 @@ class LinkedList:
         else:
             node.next = curr.next
             curr.next = node
-    
+
     def remove_node(self, value):
         curr = self.head
         if curr.data == value:
@@ -50,8 +51,7 @@ class LinkedList:
                 return curr
             curr = curr.next
         return None
-    
-    
+
     def __str__(self):
         curr = self.head
         string = ""
@@ -60,6 +60,7 @@ class LinkedList:
             curr = curr.next
         string += str(curr.data)
         return string
+
 
 linked_list = LinkedList()
 linked_list.append(1)

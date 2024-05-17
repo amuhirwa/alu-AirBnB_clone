@@ -2,13 +2,16 @@
 import uuid
 import datetime
 
+
 class BaseModel:
     def __init__(self, *args, **kwargs):
         """Constructor to initialize BaseModel instance."""
         if kwargs:
             self.id = kwargs['id']
-            self.created_at = datetime.datetime.fromisoformat(kwargs['created_at'])
-            self.updated_at = datetime.datetime.fromisoformat(kwargs['updated_at'])
+            self.created_at = datetime.datetime.fromisoformat(
+                kwargs['created_at'])
+            self.updated_at = datetime.datetime.fromisoformat(
+                kwargs['updated_at'])
         else:
             from models import storage
             self.id = str(uuid.uuid4())
@@ -25,7 +28,7 @@ class BaseModel:
         from models import storage
         self.updated_at = datetime.datetime.now()
         storage.save()
-    
+
     def to_dict(self):
         """Returns a dictionary representation of the object"""
         dict_copy = self.__dict__.copy()
@@ -33,4 +36,3 @@ class BaseModel:
         dict_copy['created_at'] = self.created_at.isoformat()
         dict_copy['updated_at'] = self.updated_at.isoformat()
         return dict_copy
- 
