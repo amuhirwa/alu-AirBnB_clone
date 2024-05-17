@@ -37,5 +37,5 @@ class FileStorage:
                 retrieved_data = json.load(f)
                 for k, v in retrieved_data.items():
                     self.new(eval(f"{v['__class__']}")(**v))
-        except:
+        except FileNotFoundError:
             pass
