@@ -18,7 +18,6 @@ The command interpreter/console serves as the interface of the application, rese
 * create
 * update
 * destroy
-* count
 
 These commands enable users to manage objects within the project, such as creating new users or places, retrieving objects from files or databases, performing operations on objects, updating attributes, and destroying objects.
 
@@ -26,7 +25,7 @@ These commands enable users to manage objects within the project, such as creati
 
 | Tasks | Files | Description |
 |-------|-------|-------------|
-| 0     | AUTHORS | Project authors (Bridget Chimdinma and Afsa Umutoniwase) |
+| 0     | AUTHORS | Project authors (Alain Michael Muhirwa and Anne Marie Twagirayezu) |
 | 1     | console.py /models/engine/file_storage.py /models/user.py | Implement the user class dynamically in the console and file storage system |
 | 2     | /tests | Unit tests for all class-defining modules |
 | 3     | console.py /models/engine/file_storage.py | Updates console and file storage system dynamically |
@@ -48,7 +47,6 @@ To start the console, follow these steps:
 ```
 git clone https://github.com/amuhirwa/alu-AirBnB_clone.git
 ```
-After cloning the repository, you will have a folder called AirBnB_clone. In here, there will be several files that allow the program to work.
 
 2. Navigate to the project directory:
 ```
@@ -67,8 +65,7 @@ python console.py
 | quit or EOF | Exits the program | By itself |
 | help | Provides a text describing how to use a command | By itself --or-- help < command > |
 | create | Creates a new instance of a valid `Class`, saves it (to the JSON file) and prints the `id`. Valid classes are: BaseModel, User, State, City, Amenity, Place, Review. | create < class name > |
-| show | Prints the string representation of an instance based on the class name and `id` | show < class name > < id > --or-- < class name >.show(< id >) |
-| destroy | Deletes an instance based on the class name and `id` (saves the change into a JSON file). | destroy < class name > < id > --or-- < class name >.destroy() |
-| all | Prints all string representation of all instances based or not on the class name. | By itself or all < class name > --or-- < class name >.all() |
-| update | Updates an instance based on the class name and `id` by adding or updating attributes (saves the changes into a JSON file). | update < class name > < id > < attribute name > "< attribute value >" --or-- < class name >.update(< id >, < attribute name >, < attribute value >) --or-- < class name >.update(< id >, < dictionary representation >) |
-| count | Retrieves the number of instances of a class. | < class name >.count() |
+| show | Prints the string representation of an instance based on the class name and `id` | show < class name > < id > |
+| destroy | Deletes an instance based on the class name and `id` (saves the change into a JSON file). | destroy < class name > < id > |
+| all | Prints all string representation of all instances based or not on the class name. | By itself or all < class name > |
+| update | Updates an instance based on the class name and `id` by adding or updating attributes (saves the changes into a JSON file). | update < class name > < id > < attribute name > "< attribute value >" |
