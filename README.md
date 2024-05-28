@@ -4,7 +4,7 @@
 
 ### Introduction
 
-This repository contains the codebase for the initial stage of a project to build a clone of the AirBnB website. We are creating a command interpreter to manage AirBnB objects, enabling us to perform actions such as creating, retrieving, updating, and deleting objects.
+This repository contains the codebase for the initial stage of a project to build a clone of the AirBnB website. We are creating a command interpreter to manage AirBnB objects, enabling us to perform actions such as creating, retrieving, updating, and deleting objects. It also holds the basic front-end made with html/css.
 
 ### Project Description
 
